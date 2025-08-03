@@ -11,7 +11,7 @@ const errorHandler = require('./middlewares/errHandler');
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://extracker-web-app.onrender.com',
     credentials: true
 }));
 
