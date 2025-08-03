@@ -10,7 +10,7 @@ This is the Express backend for the Expense Tracker app. It handles authenticati
 
 ## 🌐 Live API
 
-[https://your-backend.onrender.com](https://your-backend.onrender.com)
+[https://extraker-project-server.onrender.com](https://your-backend.onrender.com)
 
 ## 🧰 Tech Stack
 
