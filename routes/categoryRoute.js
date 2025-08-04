@@ -1,7 +1,7 @@
 const express = require('express');
 const categoryCtrl = require('../controller/categoryCtrl');
 const verifyCookie = require('../middlewares/verifyCookie');
-//const isAuth = require('../middlewares/isAuth');
+
 
 const categoryRouter = express.Router();
 
