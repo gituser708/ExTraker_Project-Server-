@@ -7,6 +7,6 @@ const categoryRouter = express.Router();
 
 categoryRouter.post('/api/v1/categories/create', verifyCookie, categoryCtrl.create);
 categoryRouter.get('/api/v1/categories/lists', verifyCookie, categoryCtrl.lists);
-categoryRouter.delete('/api/v1/categories/delete/:id', verifyCookie, categoryCtrl.delete);
+categoryRouter.delete('/api/v1/categories/delete/:id', categoryCtrl.delete);
 
 module.exports = categoryRouter;
