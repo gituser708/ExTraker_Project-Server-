@@ -39,17 +39,25 @@ const categoryCtrl = {
     }),
 
     delete: asyncHandler(async (req, res) => {
-        const category = await Category.findById(req.params.id);
-        if (category && category.user.toString() === req.user.toString()) {
-            const categoryName = category.name;
-            await Category.findByIdAndDelete(req.params.id);
-            await Transaction.deleteMany({ category: categoryName });
+  if (!req.user) {
+    return res.status(401).json({ message: 'Unauthorized: no user context' });
+  }
 
-            res.json({ message: 'Category and related transactions deleted!' });
-        } else {
-            res.status(404).json({ message: 'Category not found or Unauthorized!' });
-        };
-    }),
+  const category = await Category.findById(req.params.id);
+  if (!category) {
+    return res.status(404).json({ message: 'Category not found!' });
+  }
+
+  if (category.user.toString() !== req.user._id.toString()) {
+    return res.status(403).json({ message: 'Not authorized to delete this category' });
+  }
+
+  const categoryName = category.name;
+  await Category.findByIdAndDelete(req.params.id);
+  await Transaction.deleteMany({ category: categoryName });
+
+  res.json({ message: 'Category and related transactions deleted!' });
+}),
 };
 
 module.exports = categoryCtrl;

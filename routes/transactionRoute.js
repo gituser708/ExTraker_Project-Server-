@@ -9,7 +9,7 @@ transactionRouter.post('/api/v1/transactions/create', verifyCookie, transactionC
 transactionRouter.get('/api/v1/transactions/lists', verifyCookie,
     transactionCtrl.getFilteredTransactions);
 transactionRouter.put('/api/v1/transactions/update/:id', verifyCookie, transactionCtrl.update);
-transactionRouter.delete('/api/v1/transactions/delete/:id', transactionCtrl.delete);
+transactionRouter.delete('/api/v1/transactions/delete/:id',verifyCookie, transactionCtrl.delete);
 
 
 module.exports = transactionRouter;

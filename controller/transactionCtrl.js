@@ -65,12 +65,23 @@ const transactionCtrl = {
     }),
 
     delete: asyncHandler(async (req, res) => {
-        const transaction = await Transaction.findById(req.params.id);
-        if (transaction && transaction.user.toString() === req.user.toString()) {
-            await Transaction.findByIdAndDelete(req.params.id);
-            res.json({ message: 'Transaction removed...' });
-        };
-    }),
+    if (!req.user) {
+      return res.status(401).json({ message: 'Unauthorized: no user context' });
+    }
+
+    const transaction = await Transaction.findById(req.params.id);
+    if (!transaction) {
+      return res.status(404).json({ message: 'Transaction not found!' });
+    }
+
+    if (transaction.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'Not authorized to delete this transaction' });
+    }
+
+    await Transaction.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Transaction deleted successfully!' });
+  }),
 };
+
 
 module.exports = transactionCtrl;
