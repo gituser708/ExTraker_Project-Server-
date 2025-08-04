@@ -1,7 +1,6 @@
 const express = require('express');
 const userCtrl = require('../controller/userCtrl');
 const upload = require('../middlewares/upload');
-//const isAuth = require('../middlewares/isAuth');
 const verifyCookie = require('../middlewares/verifyCookie');
 
 const userRouter = express.Router();

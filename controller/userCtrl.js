@@ -164,7 +164,8 @@ const userCtrl = {
         res.clearCookie('token', {
             httpOnly: true,
             secure: true,
-            sameSite: 'Lax'
+            sameSite: 'None',
+            path: '/'
         });
         res.status(200).json({ message: 'You are logged out' });
     }),
