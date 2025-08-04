@@ -1,7 +1,6 @@
 const express = require('express');
 const transactionCtrl = require('../controller/transactionCtrl');
 const verifyCookie = require('../middlewares/verifyCookie');
-//const isAuth = require('../middlewares/isAuth');
 
 
 const transactionRouter = express.Router();
