@@ -16,10 +16,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
-app.options('*', cors({
-  origin: 'https://extracker-web-app.onrender.com',
-  credentials: true
-}));
 
 
 app.use(express.json());
